@@ -1,6 +1,6 @@
-$body-color: slateblue;
+// Core modules
 
-body {
-  color: $body-color;
-  font-family: sans-serif;
-}
+@import './modules/reset.scss';
+@import './modules/typography.scss';
+@import './modules/layout.scss';
+@import './modules/grid.scss';
