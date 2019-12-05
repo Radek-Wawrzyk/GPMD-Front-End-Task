@@ -7,12 +7,20 @@ const applicationInit = () => {
   fetchImagesData();
 };
 
-const renderGrid = (images, DOMElement) => {
+const renderGrid = (data, DOMElement) => {
   const markup = `
     <ul class="grid__list">
-      ${images.map(image => 
+      ${data.map(item => 
         `<li class="grid__element">
-            <img class="grid__image" alt="${image.alt_description}" src="${image.urls.full}" />
+            <a href="${item.links.html}" class="grid__element-link" aria-label="${item.alt_description}">
+              <img class="grid__element-image" alt="${item.alt_description}" src="${item.urls.full}" />
+            </a>
+            
+            <div class="grid__element-bottom">
+              <a href="${item.user.links.html}" class="grid__element-author-link">
+                ${item.user.first_name}
+              </a>
+            </div>
         </li>`
       ).join('')}
     </ul>
@@ -25,6 +33,7 @@ const fetchImagesData = async () => {
   try {
     const response = await fetch(`https://api.unsplash.com/photos/?client_id=${API_KEY}`);
     const fetchedData = await response.json();
+
     renderGrid(fetchedData, gridWrapper);
   } catch (err) {
     console.log(err);
