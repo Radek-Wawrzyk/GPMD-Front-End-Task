@@ -58,6 +58,7 @@
       width: 100%;
       z-index: 10;
       padding: 0 2rem;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 60%, transparent);
     }
 
     &-author-link {
@@ -66,9 +67,11 @@
       font-weight: bold;
       font-size: 1.2rem;
       padding: 0.5rem;
+      transition: color $transition-time;           
 
       &:hover, &:focus {
-        outline-color: $link-color;
+        outline-color: $link-color--secondary;
+        color: $link-color--secondary
       }
     }
   }
